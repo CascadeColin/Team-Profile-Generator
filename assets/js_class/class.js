@@ -26,7 +26,7 @@ class Engineer extends Employee {
         super(name, id, email)
         this.github = github;
     }
-    getGithubb() {}
+    getGithub() {}
     //overrides Employee getRole() method
     getRole() {}
 }
@@ -40,3 +40,5 @@ class Intern extends Employee {
     //overrides Employee getRole() method
     getRole() {}
 }
+
+module.exports = Employee;
