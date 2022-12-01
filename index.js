@@ -1,5 +1,6 @@
 'use strict'
 
-const Class = require('./assets/js_class/class');
+const Employee = require('./lib/class');
 const Inquirer = require('inquirer');
 const Jest = require('jest');
+
