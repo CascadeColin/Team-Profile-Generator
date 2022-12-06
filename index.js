@@ -10,7 +10,7 @@ const fs = require("fs");
 
 const employees = [];
 
-const createManager = () => {
+const init = () => {
   inquirer
     .prompt([
       {
@@ -41,7 +41,7 @@ const createManager = () => {
         type: "list",
         name: "buildTeam",
         message: "Would you like to add a team member?",
-        choices: ["Engineer", "Intern", "All Done"],
+        choices: ["Engineer", "Intern", "Manager", "All Done"],
         default: "None",
       },
     ])
@@ -61,8 +61,12 @@ const createManager = () => {
         case "Intern":
           createIntern();
           break;
+        case "Manager":
+          createManager();
+          break;
         case "All Done":
-          webpageGenerator();
+          createStylesheet();
+          createHtml();
           break;
       }
     });
@@ -109,6 +113,47 @@ const createEngineer = () => {
     });
 };
 
+const createManager = () => {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "name",
+        message: "What is the manager name?",
+        default: "Colin",
+      },
+      {
+        type: "input",
+        name: "id",
+        message: "What is the their employee ID?",
+        default: "1",
+      },
+      {
+        type: "input",
+        name: "email",
+        message: "What is their email address?",
+        default: "manager@email.com",
+      },
+      {
+        type: "input",
+        name: "officeNumber",
+        message: "What is their office number?",
+        default: "1",
+      },
+    ])
+    .then((response) => {
+      const manager = new Manager(
+        response.name,
+        response.id,
+        response.email,
+        response.officeNumber
+      );
+      employees.push(manager);
+      addEmployeeSucceeded(manager.role);
+      addTeamMember();
+    });
+};
+
 const createIntern = () => {
   inquirer
     .prompt([
@@ -151,37 +196,62 @@ const createIntern = () => {
 };
 
 const addTeamMember = () => {
-  inquirer.prompt([
-    {
-      type: "list",
-      name: "buildTeam",
-      message: "Would you like to add a team member?",
-      choices: ["Engineer", "Intern", "All Done"],
-      default: "None",
-    },
-  ])
-  .then((response) => {
-    switch (`${response.buildTeam}`) {
+  inquirer
+    .prompt([
+      {
+        type: "list",
+        name: "buildTeam",
+        message: "Would you like to add a team member?",
+        choices: ["Engineer", "Intern", "Manager", "All Done"],
+        default: "None",
+      },
+    ])
+    .then((response) => {
+      switch (`${response.buildTeam}`) {
         case "Engineer":
           createEngineer();
           break;
         case "Intern":
           createIntern();
           break;
+        case "Manager":
+          createManager();
+          break;
         case "All Done":
-          webpageGenerator();
+          createStylesheet();
+          createHtml();
           break;
       }
-  });
+    });
 };
 
-const webpageGenerator = () => {
-    
-    console.log("this is when the HTML and CSS will be rendered")
+const createStylesheet = (fileName, data) => {
+    inquirer.prompt([{
+        type: "input",
+        name: "filename",
+        message: "Enter a filename for your CSS file:",
+        default: "styles",
+    }])
+    .then((response) => {
+        // FIXME: started class in the middle of writing this function
+        const filename = `${response.fileName}.css`
+        fs.writeFile(filename, data, (err) => err ? console.error(err) : console.log("CSS!"));
+    })
+
+};
+
+const createHtml = () => {
+  console.log("this is when the HTML will be rendered");
+  // renderHtmlCards() to dynamically create HTML cards from employees[]
+  console.log(employees);
 };
 
 const addEmployeeSucceeded = (employeeType) => {
-    console.log(`\n${employeeType} added successfully!\n`);
-}
+  console.log(`\n${employeeType} added successfully!\n`);
+};
 
-createManager();
+const renderHtmlCards = () => {
+  // employees.forEach() => generate new HTML card
+};
+
+init();
