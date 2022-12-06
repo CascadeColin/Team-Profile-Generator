@@ -4,5 +4,27 @@
   },
   "devDependencies": {
     "jest": "^29.3.1"
-  }
+  },
+  "name": "team-profile-generator",
+  "description": "Command-line Node app that builds team member profiles",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "start": "node index",
+    "watch": "nodemon index",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CascadeColin/Team-Profile-Generator.git"
+  },
+  "author": "CascadeColin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CascadeColin/Team-Profile-Generator/issues"
+  },
+  "homepage": "https://github.com/CascadeColin/Team-Profile-Generator#readme"
 }
