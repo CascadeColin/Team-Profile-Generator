@@ -7,6 +7,26 @@ const Intern = require("./lib/intern");
 const inquirer = require("inquirer");
 const jest = require("jest");
 const fs = require("fs");
+const { notStrictEqual } = require("assert");
+
+const htmlBeforeCards = `<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Team</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="container">
+    <header class="header">
+      <h1>My Team</h1>
+    </header>
+    <div class="subcontainer">`;
+
+const htmlAfterCards = `    </div>
+    </body>
+</html>`;
 
 const employees = [];
 
@@ -65,7 +85,6 @@ const init = () => {
           createManager();
           break;
         case "All Done":
-          createStylesheet();
           createHtml();
           break;
       }
@@ -218,40 +237,79 @@ const addTeamMember = () => {
           createManager();
           break;
         case "All Done":
-          createStylesheet();
           createHtml();
           break;
       }
     });
 };
 
-const createStylesheet = (fileName, data) => {
-    inquirer.prompt([{
-        type: "input",
-        name: "filename",
-        message: "Enter a filename for your CSS file:",
-        default: "styles",
-    }])
-    .then((response) => {
-        // FIXME: started class in the middle of writing this function
-        const filename = `${response.fileName}.css`
-        fs.writeFile(filename, data, (err) => err ? console.error(err) : console.log("CSS!"));
-    })
-
-};
-
 const createHtml = () => {
-  console.log("this is when the HTML will be rendered");
-  // renderHtmlCards() to dynamically create HTML cards from employees[]
-  console.log(employees);
+  const filename = `./dist/index.html`;
+  const data = (`${htmlBeforeCards}\n${renderHtmlCards()}\n${htmlAfterCards}`);
+  writeToFile(filename, data);
 };
 
 const addEmployeeSucceeded = (employeeType) => {
-  console.log(`\n${employeeType} added successfully!\n`);
+  console.log('\x1b[34m%s\x1b[0m', `\n${employeeType} added successfully!\n`);
 };
 
 const renderHtmlCards = () => {
-  // employees.forEach() => generate new HTML card
+  let html = ``;
+  employees.forEach((employee) => {
+    switch(employee.role) {
+      case "Manager":
+        const managerCard = `      <section class="card">
+        <div class="cardHeader">
+          <h2 class="cardHeaderInfo">${employee.name}</h2>
+          <h3 class="cardHeaderInfo">${employee.role}</h3>
+        </div>
+        <div class="cardBottom">
+          <p class="cardInfo">ID: ${employee.id}</p>
+          <p class="cardInfo"><a href="mailto: ${employee.email}"></a>${employee.email}</a></p>
+          <p class="cardInfo">Office Number: ${employee.officeNumber}</p>
+        </div>
+      </section>
+      `;
+        html = html.concat(managerCard);
+        break;
+      case "Engineer":
+        const engineerCard = `      <section class="card">
+        <div class="cardHeader">
+          <h2 class="cardHeaderInfo">${employee.name}</h2>
+          <h3 class="cardHeaderInfo">${employee.role}</h3>
+        </div>
+        <div class="cardBottom">
+          <p class="cardInfo">ID: ${employee.id}</p>
+          <p class="cardInfo"><a href="mailto: ${employee.email}"></a>Email: ${employee.email}</a></p>
+          <p class="cardInfo"><a href="https://github.com/${employee.github}">GitHub: ${employee.github}</p></a>
+        </div>
+      </section>
+      `;
+        html = html.concat(engineerCard);
+        break;
+      case "Intern":
+        const internCard = `      <section class="card">
+        <div class="cardHeader">
+          <h2 class="cardHeaderInfo">${employee.name}</h2>
+          <h3 class="cardHeaderInfo">${employee.role}</h3>
+        </div>
+        <div class="cardBottom">
+          <p class="cardInfo">ID: ${employee.id}</p>
+          <p class="cardInfo"><a href="mailto: ${employee.email}"></a>Email: ${employee.email}</a></p>
+          <p class="cardInfo">School: ${employee.school}</p>
+        </div>
+      </section>
+      `;
+        html = html.concat(internCard);
+        break;
+    }
+  })
+  return html;
 };
+
+const writeToFile = (fileName, data) => {
+  fs.writeFile(fileName, data, (err) =>
+  err ? console.error(err) : console.log("\x1b[34m%s\x1b[0m", "Your HTML page is ready!"));
+}
 
 init();
