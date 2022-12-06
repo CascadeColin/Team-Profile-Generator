@@ -265,7 +265,7 @@ const renderHtmlCards = () => {
         </div>
         <div class="cardBottom">
           <p class="cardInfo">ID: ${employee.id}</p>
-          <p class="cardInfo"><a href="mailto: ${employee.email}"></a>${employee.email}</a></p>
+          <p class="cardInfo">Email: <a href="mailto: ${employee.email}">${employee.email}</a></p>
           <p class="cardInfo">Office Number: ${employee.officeNumber}</p>
         </div>
       </section>
@@ -280,8 +280,8 @@ const renderHtmlCards = () => {
         </div>
         <div class="cardBottom">
           <p class="cardInfo">ID: ${employee.id}</p>
-          <p class="cardInfo"><a href="mailto: ${employee.email}"></a>Email: ${employee.email}</a></p>
-          <p class="cardInfo"><a href="https://github.com/${employee.github}">GitHub: ${employee.github}</p></a>
+          <p class="cardInfo">Email: <a href="mailto: ${employee.email}">${employee.email}</a></p>
+          <p class="cardInfo">GitHub: <a href="https://github.com/${employee.github}">${employee.github}</p></a>
         </div>
       </section>
       `;
@@ -295,7 +295,7 @@ const renderHtmlCards = () => {
         </div>
         <div class="cardBottom">
           <p class="cardInfo">ID: ${employee.id}</p>
-          <p class="cardInfo"><a href="mailto: ${employee.email}"></a>Email: ${employee.email}</a></p>
+          <p class="cardInfo">Email: <a href="mailto: ${employee.email}">${employee.email}</a></p>
           <p class="cardInfo">School: ${employee.school}</p>
         </div>
       </section>

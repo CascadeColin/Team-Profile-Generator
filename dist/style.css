@@ -76,3 +76,7 @@
     border-radius: 5px;
     font-size: small;
 }
+
+.cardInfo a {
+    background-color: rgb(240, 240, 240);
+}
