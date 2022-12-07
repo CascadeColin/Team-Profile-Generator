@@ -37,7 +37,7 @@ const init = () => {
         type: "input",
         name: "name",
         message: "What is the manager name?",
-        default: "Manager",
+        default: "Michael",
       },
       {
         type: "input",
@@ -98,7 +98,7 @@ const createEngineer = () => {
         type: "input",
         name: "name",
         message: "What is the engineer's name?",
-        default: "Engineer",
+        default: "Kelly",
       },
       {
         type: "input",
@@ -139,7 +139,7 @@ const createManager = () => {
         type: "input",
         name: "name",
         message: "What is the manager name?",
-        default: "Manager",
+        default: "Michael",
       },
       {
         type: "input",
@@ -180,7 +180,7 @@ const createIntern = () => {
         type: "input",
         name: "name",
         message: "What is the intern's name?",
-        default: "Intern",
+        default: "Megan",
       },
       {
         type: "input",

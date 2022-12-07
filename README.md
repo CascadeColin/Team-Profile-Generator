@@ -25,7 +25,9 @@ This app utilizes the Node runtime and runs on the command line.  Basic understa
   
 Use your CLI to run the app with the command "node index.js".  From there, you will be prompted to enter information about the team's manager.  Once done, there will be a menu with the option to add an engineer, add an intern, or "all done" to finish building the team.  Upon selecting "all done", a HTML page will be generated in the "lib/" directory that is already linked to the provided stylesheet.  The app will reject email addresses that do not follow proper email syntax (i.e. "george@company.com") and will automatically replace it with "Invalid Email Submitted".
 
-A video walkthrough of this app's functionality has been provided at:  
+A video walkthrough of this app's functionality has been provided at:  https://drive.google.com/file/d/1RtiiDc3CRdTHls9BvoRHZI3Xl8twKLZ7/view
+
+Note:  These walkthroughs have been taking a long time to render.  I completed recording at 6:07pm PST on 12/6/22 and it may take some time to be available.
   
 ## Contributing
   
