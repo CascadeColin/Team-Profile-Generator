@@ -37,7 +37,7 @@ const init = () => {
         type: "input",
         name: "name",
         message: "What is the manager name?",
-        default: "Colin",
+        default: "Manager",
       },
       {
         type: "input",
@@ -104,7 +104,7 @@ const createEngineer = () => {
         type: "input",
         name: "id",
         message: "What is the their employee ID?",
-        default: "2",
+        default: "1",
       },
       {
         type: "input",
@@ -116,7 +116,7 @@ const createEngineer = () => {
         type: "input",
         name: "github",
         message: "What is their GitHub username?",
-        default: "CascadeColin",
+        default: "MyGithub",
       },
     ])
     .then((response) => {
@@ -139,7 +139,7 @@ const createManager = () => {
         type: "input",
         name: "name",
         message: "What is the manager name?",
-        default: "Colin",
+        default: "Manager",
       },
       {
         type: "input",
@@ -180,13 +180,13 @@ const createIntern = () => {
         type: "input",
         name: "name",
         message: "What is the intern's name?",
-        default: "Engineer",
+        default: "Intern",
       },
       {
         type: "input",
         name: "id",
         message: "What is the their employee ID?",
-        default: "2",
+        default: "1",
       },
       {
         type: "input",
@@ -309,7 +309,7 @@ const renderHtmlCards = () => {
 
 const writeToFile = (fileName, data) => {
   fs.writeFile(fileName, data, (err) =>
-  err ? console.error(err) : console.log("\x1b[34m%s\x1b[0m", "Your HTML page is ready!"));
+  err ? console.error(err) : console.log("\x1b[34m%s\x1b[0m", "\nYour HTML page is ready!"));
 }
 
 init();
